@@ -3,7 +3,7 @@ from scipy.constants import g
 
 
 class boat:
-    '''Object for a boat. All units are SI units, and angles are in radians.'''
+    '''Object for a boat. All units are SI units, and angles are in radians, except avs.'''
 
     def __init__(self, D, L, W, m):
         self.D = D  # depth (Z)
@@ -54,6 +54,11 @@ class boat:
         return np.array([0,
                          0,
                          np.sum(self.Z * waterMasses) / waterMass])
+
+    def avs(self):
+        '''returns avs in degrees. Is a method and not a field because this will
+        probably take a while to calculate'''
+        return np.argmin([rightingMoment(angle * np.pi / 180) for angle in np.arange(0, 90)])
 
     def rightingMoment(self, theta):
         '''Returns the righting moment'''
