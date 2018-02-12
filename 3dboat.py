@@ -58,7 +58,7 @@ class boat:
     def avs(self):
         '''returns avs in degrees. Is a method and not a field because this will
         probably take a while to calculate'''
-        return np.argmin([rightingMoment(angle * np.pi / 180) for angle in np.arange(0, 90)])
+        return np.argmin([rightingMoment(angle * np.pi / 180) for angle in np.arange(0, 180)])
 
     def rightingMoment(self, theta):
         '''Returns the righting moment'''
