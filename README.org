@@ -1,1 +1,5 @@
 * QEA Boat
+
+* Things to do
+- Change hull to reflect a boat design (semicircular along yz cross-sections, parabolic long zx cross-sections, and either elliptical or two parabolas for xy?).
+- Actually test the code and cross-check with math.
