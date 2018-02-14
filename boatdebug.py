@@ -16,8 +16,9 @@ X, Y, Z = np.meshgrid(np.arange(-L / 2, L / 2, ds),
 
 def hull(x, y):
     # return -(W**2 / 4 - y ** 2) ** .5 + W / 2
-    return D * (4 * x ** 2 / L ** 2 + 4 * y ** 2 / W ** 2)
-
+    # return D * (4 * x ** 2 / L ** 2 + 4 * y ** 2 / W ** 2)
+    # return -((W / 2 * (1 - 16 * y ** 4 / L ** 4)) ** 2 - x ** 2) ** .5 + W / 2
+    return - ((W / 2 - 8 * W * x ** 4 / L ** 4) ** 2 - y ** 2) ** .5 + W / 2
 
 
 hullMat = Z > hull(X, Y)
@@ -83,12 +84,13 @@ def rightingMoment(theta):
 # plt.imshow(tilt(np.pi / 3)[:, 100, :])
 # plt.show()
 # plt.imshow(hullMat[:, :, 119])
+# plt.imshow(hullMat[:, 10, :])
 # plt.show()
 # print(np.sum((hullMat)))
 
 angles = np.arange(0, 2 * np.pi, np.pi / 9)
 moments = [rightingMoment(angle) for angle in angles]
-plt.plot(angles, moments)
+plt.plot(np.degrees(angles), moments)
 plt.show()
 
 # print(rightingMoment(5 * np.pi / 9))
