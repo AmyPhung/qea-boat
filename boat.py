@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.constants import g
 
 
@@ -35,6 +36,7 @@ class boat:
     def hull(self, x, y):
         '''Returns the shape of the hull'''
         return 4 * self.D * (x ** 2 / self.L ** 2 + y ** 2 / self.W ** 2)
+        # return (self.W ** 2 / 4 - y ** 2) ** .5 + self.W / 2
 
     def tilt(self, theta):
         '''Returns logical matrix of the part of the hull under
@@ -63,7 +65,7 @@ class boat:
         # fb = np.array([0, 0, g * self.m])  # bouyant force
         rotation = np.reshape((np.array([np.cos(theta), np.sin(theta), -np.sin(theta), np.cos(theta)])), (2, 2))
         # print(cb)
-        fb = rotation * cb
+        fb = np.dot(rotation, cb)
         return np.cross(r, fb)
         # return [0,0,0]
 
@@ -78,7 +80,7 @@ class boat:
             else:
                 underWater = self.Z > self.waterLine(theta, b, self.Y)
             hullWater = np.logical_and(underWater, self.hullMat)
-            massWater = np.sum(hullWater) * self.ds ** 2 * self.L * 1000
+            massWater = np.sum(hullWater) * self.ds ** 3 * 1000
             return np.abs(massWater - self.m)
 
         # maximum intercept to test, which is the one which
@@ -99,3 +101,9 @@ class boat:
         '''returns avs in degrees. Is a method and not a field because this will
         probably take a while to calculate'''
         return np.argmin([self.rightingMoment(angle * np.pi / 180) for angle in np.arange(0, 180) if angle != 90])
+
+    def plot(self):
+        angles = np.arange(0, 2 * np.pi, np.pi / 9)
+        moments = [self.rightingMoment(angle) for angle in angles]
+        plt.plot(angles, moments)
+        plt.show()
