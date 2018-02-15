@@ -1,4 +1,3 @@
-print(rightingMoment(125.50 * np.pi / 180))
 from scipy.constants import g
 import matplotlib.pyplot as plt
 import numpy as np
