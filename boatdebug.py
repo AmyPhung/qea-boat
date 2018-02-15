@@ -146,10 +146,7 @@ newNewY = newY * hullMat[:,:,-1]
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
 ax.plot_surface(newNewX, newNewY, hull(newNewX, newNewY), cmap = cm.coolwarm)
-ax.set_zlim(.7112)
-ax.set_xlim(-.3556, .3556)
-ax.set_ylim(-.3556, .3556)
 
-ax.figure.savefig('hull.png')
+ax.figure.savefig('badlyscaledbutbiggerhull.png')
 
 plt.show()
