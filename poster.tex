@@ -1,0 +1,32 @@
+\documentclass[20pt, a2paper, landscape]{tikzposter}
+\usepackage{siunitx}
+
+\title{QEA Boat}
+\author{Kawin Nikomborirak}
+\date{\today}
+
+\usetheme{Desert}
+\begin{document}
+\maketitle
+
+\begin{columns}
+  \column{0.4}
+  \block{Boat}{\includegraphics[width=0.3\textwidth]{placeholder.jpg}}
+  \block{Righting Moment vs Heel Angle}{}
+
+  \column{0.3}
+  \block{Performance Considerations}
+  {
+    \begin{itemize}
+    \item The AVS should be \ang{130} to best fit between \ang{120} and \ang{140}.
+    \item The boat will have little velocity, with a pulling force of \SI{.1}{\N}, so minimize the wet surface friction rather than wave breaking friction.
+    \item The boat should be as long as possible to eliminate vortices.
+    \end{itemize}
+  }
+
+  \column{0.3}
+  \block{Actual performance}{}
+
+\end{columns}
+
+\end{document}
