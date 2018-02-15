@@ -1,13 +1,47 @@
+print(rightingMoment(125.50 * np.pi / 180))
 from scipy.constants import g
 import matplotlib.pyplot as plt
 import numpy as np
 
-D = .12  # depth (Z)
-W = .2  # width (Y)
-L = .3  # length (X)
-m = 1.  # mass
-ds = .005
-cg = np.array([0, 0, 0.05])
+# D = .05  # depth (Z)
+# W = .075  # width (Y)
+# L = .5842  # length (X)
+# m = 1.418  # mass
+# ds = .005
+# cg = np.array([0, 0, 0.02])
+
+# mvp
+# D = .1
+# W = .524
+# L = .
+# m = 1.4
+# ds = .003
+# cg = np.array([0, 0, .055])
+
+# D = .05
+# W = .1
+# L = .15
+# m = .7
+# ds = .003
+# cg = np.array([0,0,.025])
+
+# real
+# D = .10
+# W = .1524
+# L = .58
+# m = .8997
+# ds = .003
+# cg = np.array([0, 0, .035])
+
+
+
+# narrow real
+D = .06
+W = .11
+L = .58
+m = 1.418
+ds = .003
+cg = np.array([0, 0, .025])
 
 X, Y, Z = np.meshgrid(np.arange(-L / 2, L / 2, ds),
                       np.arange(-W / 2, W / 2, ds),
@@ -17,8 +51,7 @@ X, Y, Z = np.meshgrid(np.arange(-L / 2, L / 2, ds),
 def hull(x, y):
     # return -(W**2 / 4 - y ** 2) ** .5 + W / 2
     # return D * (4 * x ** 2 / L ** 2 + 4 * y ** 2 / W ** 2)
-    # return -((W / 2 * (1 - 16 * y ** 4 / L ** 4)) ** 2 - x ** 2) ** .5 + W / 2
-    return - ((W / 2 - 8 * W * x ** 4 / L ** 4) ** 2 - y ** 2) ** .5 + W / 2
+    return - ((W / 2 - 128 * W * x ** 8 / L ** 8) ** 2 - y ** 2) ** .5 + W / 2
 
 
 hullMat = Z > hull(X, Y)
@@ -59,6 +92,9 @@ def cb(theta):
     '''Returns the center of bouyancy'''
     waterMat = tilt(theta)
     waterMasses = waterMat * ds ** 3 * 1000
+    # plt.imshow(waterMat[18,:,:])
+    # plt.imshow(hullMat[18,:,:])
+    # plt.show()
     waterMass = np.sum(waterMasses)
     return np.array([np.sum(X * waterMasses) / waterMass,
                      np.sum(Y * waterMasses) / waterMass,
@@ -80,17 +116,25 @@ def rightingMoment(theta):
     # return [0,0,0]
 
 
+# cb(0)
+
 # def intercept(
 # plt.imshow(tilt(np.pi / 3)[:, 100, :])
 # plt.show()
-# plt.imshow(hullMat[:, :, 119])
-# plt.imshow(hullMat[:, 10, :])
+# plt.imshow(hullMat[:, :, :])
+# ax = plt.gca()
+# ax.set_aspect('equal')
+# plt.imshow(hullMat[:, :, 36])
 # plt.show()
 # print(np.sum((hullMat)))
 
-angles = np.arange(0, 2 * np.pi, np.pi / 9)
+angles = np.arange(0, 360, 4) * np.pi / 180
 moments = [rightingMoment(angle) for angle in angles]
 plt.plot(np.degrees(angles), moments)
 plt.show()
+
+# print(rightingMoment(125.368 * np.pi / 180))
+
+# print(rightingMoment(131 * np.pi / 180))
 
 # print(rightingMoment(5 * np.pi / 9))
