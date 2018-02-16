@@ -21,12 +21,12 @@ import numpy as np
 # cg = np.array([0, 0, .035])
 
 # narrow real
-D = .075
-W = .15
-L = .7112
-m = 1
-ds = .002
-cg = np.array([0, 0, .0170])
+# D = .075
+# W = .15
+# L = .7112
+# m = 1
+# ds = .002
+# cg = np.array([0, 0, .0170])
 
 # D = 1
 # W = 1
@@ -34,6 +34,15 @@ cg = np.array([0, 0, .0170])
 # m = 500
 # ds = 0.015
 # cg = np.array([0,0,.5])
+
+
+D = .075
+W = .15
+L = .5842
+m = 1
+ds = .002
+cg = np.array([0, 0, .0170])
+
 
 X, Y, Z = np.meshgrid(np.arange(-L / 2, L / 2, ds),
                       np.arange(-W / 2, W / 2, ds),
@@ -134,19 +143,18 @@ def rightingMoment(theta):
 # plt.show()
 # ax.figure.savefig('curve.png')
 
-# print(rightingMoment(130 * np.pi / 180))
+print(rightingMoment(131 * np.pi / 180))
 
-newX, newY = np.meshgrid(np.arange(-L / 2, L / 2, ds),
-                      np.arange(-W / 2, W / 2, ds))
+# newX, newY = np.meshgrid(np.arange(-L / 2, L / 2, ds),
+#                       np.arange(-W / 2, W / 2, ds))
 
-newNewX = newX * hullMat[:,:,-1]
-newNewY = newY * hullMat[:,:,-1]
+# newNewX = newX * hullMat[:,:,-1]
+# newNewY = newY * hullMat[:,:,-1]
 
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+# ax.plot_surface(newNewX, newNewY, hull(newNewX, newNewY), cmap = cm.coolwarm)
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-ax.plot_surface(newNewX, newNewY, hull(newNewX, newNewY), cmap = cm.coolwarm)
+# ax.figure.savefig('badlyscaledbutbiggerhull.png')
 
-ax.figure.savefig('badlyscaledbutbiggerhull.png')
-
-plt.show()
+# plt.show()
