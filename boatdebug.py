@@ -35,24 +35,32 @@ import numpy as np
 # ds = 0.015
 # cg = np.array([0,0,.5])
 
-
 D = .075
 W = .15
 L = .5842
 m = 1
-ds = .002
-cg = np.array([0, 0, .0170])
-
+ds = .003
+# 130: cg = np.array([0, 0, .01070])
+# cg = np.array([0, 0, .023])
+# cg = np.array([0, 0, -.001])
 
 X, Y, Z = np.meshgrid(np.arange(-L / 2, L / 2, ds),
                       np.arange(-W / 2, W / 2, ds),
-                      np.arange(0, D, ds))
+                      np.arange(-.04, D, ds))
 
 
 def hull(x, y):
     # return -(W**2 / 4 - y ** 2) ** .5 + W / 2
     # return D * (4 * x ** 2 / L ** 2 + 4 * y ** 2 / W ** 2)
-    return - ((W / 2 - 128 * W * x ** 8 / L ** 8) ** 2 - y ** 2) ** .5 + W / 2
+    # return - ((W / 2 - 128 * W * x ** 8 / L ** 8) ** 2 - y ** 2) ** .5 + W / 2
+    # r = W / 2
+    # r = 0.075
+    # return 0.05 * np.tan(np.abs(22 * y) - .9) + .01
+    return .018 * np.tan(np.abs(33 * y) - 1.2) + .005
+    # return y
+    # return 75 * np.tan(np.abs(y) / .075 * 1.2 - .6) + .01
+    # return np.tan(y)
+    # return y
 
     # cube
     # return 0
@@ -125,7 +133,7 @@ def rightingMoment(theta):
 # def intercept(
 # plt.imshow(tilt(np.pi / 3)[:, 100, :])
 # plt.show()
-# plt.imshow(hullMat[:, :, :])
+# plt.imshow(hullMat[:, 58, :])
 # ax = plt.gca()
 # ax.set_aspect('equal')
 # plt.imshow(tilt(0)[:, 356, :])
@@ -143,7 +151,7 @@ def rightingMoment(theta):
 # plt.show()
 # ax.figure.savefig('curve.png')
 
-print(rightingMoment(131 * np.pi / 180))
+print(rightingMoment(140 * np.pi / 180))
 
 # newX, newY = np.meshgrid(np.arange(-L / 2, L / 2, ds),
 #                       np.arange(-W / 2, W / 2, ds))
