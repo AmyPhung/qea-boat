@@ -36,13 +36,13 @@ import numpy as np
 # cg = np.array([0,0,.5])
 
 D = .075
-W = .15
+W = .132
 L = .5842
 m = 1
-ds = .003
-# 130: cg = np.array([0, 0, .01070])
-# cg = np.array([0, 0, .023])
-# cg = np.array([0, 0, -.001])
+ds = .005
+# cg = np.array([0, 0, .0199])
+# cg = np.array([0, 0, 0.026])
+cg = np.array([0, 0, 0.0072])
 
 X, Y, Z = np.meshgrid(np.arange(-L / 2, L / 2, ds),
                       np.arange(-W / 2, W / 2, ds),
@@ -56,7 +56,7 @@ def hull(x, y):
     # r = W / 2
     # r = 0.075
     # return 0.05 * np.tan(np.abs(22 * y) - .9) + .01
-    return .018 * np.tan(np.abs(33 * y) - 1.2) + .005
+    return .012 * np.tan(np.abs(39 * y) - 1.2) + .01
     # return y
     # return 75 * np.tan(np.abs(y) / .075 * 1.2 - .6) + .01
     # return np.tan(y)
