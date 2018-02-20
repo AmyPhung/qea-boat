@@ -1,5 +1,6 @@
-\documentclass[20pt, a2paper, landscape]{tikzposter}
+\documentclass[17pt, a2paper, landscape]{tikzposter}
 \usepackage{siunitx}
+\usepackage{tabularx}
 
 \title{QEA Boat}
 \author{Kawin Nikomborirak}
@@ -11,10 +12,15 @@
 
 \begin{columns}
   \column{0.4}
-  \block{Boat}{\includegraphics[width=0.3\textwidth]{placeholder.jpg}}
-  \block{Righting Moment vs Heel Angle}{}
 
-  \column{0.3}
+  \block{BOAT}
+  {
+    \begin{tabularx}{0.4\textwidth}{l X}
+    \includegraphics[width=0.15\textwidth]{FinishedBoat.jpg} &
+    {Best Of All Time \newline Boat of Air Transportation}
+    \end{tabularx}
+  }
+
   \block{Performance Considerations}
   {
     \begin{itemize}
@@ -24,8 +30,10 @@
     \end{itemize}
   }
 
-  \column{0.3}
-  \block{Actual performance}{}
+
+  \column{0.6}
+  \block{Righting Moment vs Heel Angle}{\includegraphics[width=0.53\textwidth]{curve.png}}
+
 
 \end{columns}
 

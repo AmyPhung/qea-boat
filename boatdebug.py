@@ -1,4 +1,5 @@
 from scipy.constants import g
+import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from mpl_toolkits.mplot3d import Axes3D
@@ -10,7 +11,7 @@ L = .5842
 # L =.4342
 # m = 1.036
 m = 1
-ds = .001
+ds = .003
 cg = np.array([0, 0, .0135])
 # 120: cg = np.array([0, 0, .0242])
 # 140: cg = np.array([0, 0, 00000])
@@ -76,12 +77,16 @@ def rightingMoment(theta):
     return (np.cross(r, fb)[0])
 
 
-# plt.rc('text', usetex=True)
-# plt.rc('font', family='serif')
-# angles = np.arange(0, 180, 1.1) * np.pi / 180
-# ax = plt.gca()
-# moments = [rightingMoment(angle) for angle in angles]
-# plt.plot(np.degrees(angles), moments)
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
+angles = np.arange(0, 180, 1.1) * np.pi / 180
+ax = plt.gca()
+moments = [rightingMoment(angle) for angle in angles]
+df = pd.DataFrame({'Angles': angles, 'Moments': moments})
+df.to_csv('moments.csv')
+# ax.plot(np.degrees(angles), moments)
+# ax.plot([130],[0], 'ro')
+# ax.legend(('Righting Moment vs Heel Angle', 'AVS'))
 # ax.set_xlabel(r'Angle (\circ)')
 # ax.set_ylabel(r'Righting Moment ($N \cdot m$)')
 # plt.show()
@@ -102,6 +107,6 @@ def rightingMoment(theta):
 # ax.figure.savefig('curve.png')
 
 # plt.show()
-waterMat = tilt(0)
-plt.imshow(waterMat[:,0,:])
-plt.show()
+# waterMat = tilt(0)
+# plt.imshow(waterMat[:,0,:])
+# plt.show()
