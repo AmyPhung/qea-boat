@@ -28,6 +28,7 @@ def hull(x, y):
 hullMat = Z > hull(X, Y)
 volume = np.sum(hullMat * ds ** 3)
 
+
 def tilt(theta):
     b = intercept(theta)
     water = waterLine(theta, b, Y)
@@ -78,19 +79,20 @@ def rightingMoment(theta):
 
 
 plt.rc('text', usetex=True)
-plt.rc('font', family='serif')
+plt.rc('font', family='serif', size=14)
 angles = np.arange(0, 180, 1.1) * np.pi / 180
 ax = plt.gca()
 moments = [rightingMoment(angle) for angle in angles]
-df = pd.DataFrame({'Angles': angles, 'Moments': moments})
-df.to_csv('moments.csv')
-# ax.plot(np.degrees(angles), moments)
-# ax.plot([130],[0], 'ro')
-# ax.legend(('Righting Moment vs Heel Angle', 'AVS'))
-# ax.set_xlabel(r'Angle (\circ)')
-# ax.set_ylabel(r'Righting Moment ($N \cdot m$)')
-# plt.show()
-# ax.figure.savefig('curve.png')
+# df = pd.DataFrame({'Angles': angles, 'Moments': moments})
+# df.to_csv('moments.csv')
+ax.plot(np.degrees(angles), moments)
+ax.plot([130],[0], 'ro')
+ax.plot([130],[0], 'bo')
+ax.legend(('Righting Moment vs Heel Angle', 'Predicted AVS', 'Actual AVS'))
+ax.set_xlabel('Angle (\circ)')
+ax.set_ylabel('Righting Moment ($N \cdot m$)')
+plt.show()
+ax.figure.savefig('curve.png')
 
 # print(rightingMoment(130 * np.pi / 180))
 
